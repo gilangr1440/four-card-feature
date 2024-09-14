@@ -1,0 +1,226 @@
+$red: hsl(0, 78%, 62%);
+$cyan: hsl(180, 62%, 55%);
+$orange: hsl(34, 97%, 64%);
+$blue: hsl(212, 86%, 64%);
+
+$very-dark-blue: hsl(234, 12%, 34%);
+$grayish-blue: hsl(229, 6%, 66%);
+$very-light-gray: hsl(0, 0%, 98%);
+
+$poppins: "Poppins", sans-serif;
+
+body {
+  background: $very-light-gray;
+  font-family: $poppins;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 30px;
+
+  .header-container {
+    width: 320px;
+    justify-self: center;
+    text-align: center;
+    color: $very-dark-blue;
+    line-height: 1.5;
+    margin: 80px 0 40px 0;
+
+    .header-thin {
+      font-size: 22px;
+      font-weight: 300;
+    }
+
+    .header-thick {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .header-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: $grayish-blue;
+    }
+  }
+
+  .card-container {
+    width: 320px;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 30px;
+
+    $card-color: (
+      supervisor: $cyan,
+      team-builder: $red,
+      karma: $orange,
+      calculator: $blue,
+    );
+
+    @each $card, $color in $card-color {
+      .#{$card}-card {
+        background-color: white;
+        border-top: 5px solid $color;
+        color: $very-dark-blue;
+        line-height: 1.8;
+        border-radius: 10px;
+        padding: 20px 30px 30px 30px;
+        -webkit-box-shadow: 0px 10px 31px -11px hsla(229, 6%, 66%, 0.6);
+        -moz-box-shadow: 0px 10px 31px -11px hsla(229, 6%, 66%, 0.6);
+        box-shadow: 0px 10px 31px -11px hsla(229, 6%, 66%, 0.6);
+        display: grid;
+        grid-template-rows: repeat(3, min-content);
+        box-sizing: border-box;
+
+        & .card-header {
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        & .card-desc {
+          font-size: 15px;
+          font-weight: 400;
+          color: $grayish-blue;
+          margin-bottom: 50px;
+        }
+
+        & .card-icon {
+          justify-self: end;
+        }
+      }
+    }
+  }
+
+  footer {
+    width: 320px;
+    justify-self: center;
+
+    .attribution {
+      & a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    .header-container {
+      width: 70%;
+      margin: 60px 0 30px 0;
+    }
+
+    .card-container {
+      width: 70%;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: repeat(2, auto);
+      gap: 30px;
+    }
+
+    footer {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    .header-container {
+      width: 500px;
+
+      .header-thin {
+        font-size: 28px;
+      }
+
+      .header-thick {
+        font-size: 28px;
+      }
+    }
+
+    .card-container {
+      width: 85%;
+      grid-template-columns: repeat(3, 270px);
+      grid-template-rows: repeat(2, 250px);
+      grid-template-areas:
+        "supervisor team-builder calculator"
+        "supervisor karma calculator";
+      justify-content: center;
+
+      $card-color: (
+        supervisor: $cyan,
+        team-builder: $red,
+        karma: $orange,
+        calculator: $blue,
+      );
+
+      @each $card, $color in $card-color {
+        @if $card == supervisor {
+          .#{$card}-card {
+            grid-area: $card;
+            height: 250px;
+            position: relative;
+            align-self: center;
+
+            & .card-icon {
+              position: absolute;
+              bottom: 30px;
+              right: 30px;
+            }
+          }
+        } @else if $card == team-builder {
+          .#{$card}-card {
+            grid-area: $card;
+            position: relative;
+
+            & .card-icon {
+              position: absolute;
+              bottom: 30px;
+              right: 30px;
+            }
+          }
+        } @else if $card == karma {
+          .#{$card}-card {
+            grid-area: $card;
+            position: relative;
+
+            & .card-icon {
+              position: absolute;
+              bottom: 30px;
+              right: 30px;
+            }
+          }
+        } @else if $card == calculator {
+          .#{$card}-card {
+            grid-area: $card;
+            height: 250px;
+            position: relative;
+            align-self: center;
+
+            & .card-icon {
+              position: absolute;
+              bottom: 30px;
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    .card-container {
+      grid-template-columns: repeat(3, 350px);
+      grid-template-rows: repeat(2, 250px);
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  body {
+    .card-container {
+      grid-template-columns: repeat(3, 370px);
+      grid-template-rows: repeat(2, 250px);
+    }
+  }
+}
